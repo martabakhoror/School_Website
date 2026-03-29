@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MA Nurul Iman — Madrasah Aliyah Unggulan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ─────────────────────────────────────── */
+:root {
+  --g900:#0A2E1F; --g800:#0F3D2A; --g700:#145235; --g600:#1A6B45;
+  --g500:#228B57; --g400:#2DAF6E; --g300:#5CCC90; --g200:#A8EAC8; --g100:#E6F9F0;
+  --gold:#C9A84C; --gold-l:#E8C96A; --gold-d:#9A7530;
+  --cream:#FAFAF7; --white:#FFFFFF; --gray100:#F4F4F1; --gray200:#E5E5E0;
+  --gray400:#9A9A90; --gray600:#5A5A52; --gray800:#2A2A24;
+  --text:#1C1C18; --muted:#6B6B60;
+  --radius-sm:6px; --radius-md:12px; --radius-lg:20px; --radius-xl:32px;
+  --shadow-sm:0 1px 4px rgba(0,0,0,.06); --shadow-md:0 4px 20px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 48px rgba(0,0,0,.12);
+  --font-display:'Cormorant Garamond',serif;
+  --font-body:'Plus Jakarta Sans',sans-serif;
+  --font-arabic:'Amiri',serif;
+  --nav-h:68px;
+  --section-pad:6rem 5%;
+  --transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── RESET ───────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:var(--font-body);color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+button{cursor:pointer;border:none;background:none;font-family:inherit;}
+
+/* ── UTILITIES ───────────────────────────────────── */
+.container{max-width:1200px;margin:0 auto;padding:0 5%;}
+.label{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;font-weight:600;color:var(--g400);}
+.display{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;line-height:1.12;color:var(--g900);}
+.display-white{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;line-height:1.12;color:var(--white);}
+.body-lg{font-size:1.05rem;color:var(--muted);line-height:1.8;font-weight:400;}
+.gold{color:var(--gold);}
+.green{color:var(--g500);}
+.section-header{text-align:center;max-width:620px;margin:0 auto 3.5rem;display:flex;flex-direction:column;gap:.75rem;}
+
+/* ── BUTTONS ─────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:var(--radius-sm);font-size:.875rem;font-weight:600;letter-spacing:.02em;transition:var(--transition);}
+.btn-primary{background:var(--g600);color:var(--white);}
+.btn-primary:hover{background:var(--g500);transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,107,69,.3);}
+.btn-gold{background:var(--gold);color:var(--g900);}
+.btn-gold:hover{background:var(--gold-l);transform:translateY(-1px);}
+.btn-outline-white{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.5);}
+.btn-outline-white:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.8);}
+.btn-outline-green{background:transparent;color:var(--g600);border:1.5px solid var(--g300);}
+.btn-outline-green:hover{background:var(--g100);}
+.btn svg{width:16px;height:16px;}
+
+/* ── NAVBAR ──────────────────────────────────────── */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:999;height:var(--nav-h);transition:var(--transition);}
+#navbar.scrolled{background:rgba(10,46,31,.96);backdrop-filter:blur(12px);box-shadow:0 1px 24px rgba(0,0,0,.2);}
+#navbar:not(.scrolled){background:transparent;}
+.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+.nav-brand{display:flex;align-items:center;gap:12px;}
+.nav-emblem{width:42px;height:42px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-emblem span{font-family:var(--font-arabic);color:var(--gold);font-size:14px;}
+.nav-brand-text{display:flex;flex-direction:column;gap:1px;}
+.nav-brand-name{font-family:var(--font-display);color:var(--white);font-size:1.1rem;font-weight:700;line-height:1;}
+.nav-brand-sub{font-size:.65rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;}
+.nav-menu{display:flex;align-items:center;gap:2.5rem;}
+.nav-menu a{color:rgba(255,255,255,.75);font-size:.875rem;font-weight:500;transition:color .2s;position:relative;}
+.nav-menu a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .25s;}
+.nav-menu a:hover{color:var(--white);}
+.nav-menu a:hover::after{width:100%;}
+.nav-actions{display:flex;align-items:center;gap:1rem;}
+.hamburger{display:none;flex-direction:column;gap:5px;width:28px;padding:4px 0;}
+.hamburger span{display:block;height:1.5px;background:var(--white);transition:var(--transition);}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--g900);z-index:998;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--white);font-size:1.5rem;font-family:var(--font-display);font-weight:600;}
+.mobile-menu a:hover{color:var(--gold);}
+.mobile-close{position:absolute;top:1.5rem;right:5%;font-size:2rem;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;}
+
+/* ── HERO ────────────────────────────────────────── */
+#hero{min-height:100svh;background:var(--g900);position:relative;overflow:hidden;display:flex;align-items:center;}
+.hero-pattern{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(60deg,transparent,transparent 38px,rgba(255,255,255,1) 38px,rgba(255,255,255,1) 39px),repeating-linear-gradient(-60deg,transparent,transparent 38px,rgba(255,255,255,1) 38px,rgba(255,255,255,1) 39px);}
+.hero-glow{position:absolute;top:-20%;right:-10%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(34,139,87,.25) 0%,transparent 65%);}
+.hero-inner{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:calc(var(--nav-h) + 4rem) 5% 4rem;}
+.hero-content{display:flex;flex-direction:column;gap:1.75rem;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(93,204,144,.1);border:1px solid rgba(93,204,144,.25);color:var(--g300);padding:6px 16px;border-radius:100px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;width:fit-content;}
+.hero-dot{width:5px;height:5px;background:var(--g300);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.8);}}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.8rem,5.5vw,4.4rem);font-weight:700;line-height:1.1;color:var(--white);}
+.hero-title em{font-style:normal;color:var(--g300);}
+.hero-desc{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.85;max-width:480px;font-weight:300;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;}
+.hero-stats{display:flex;gap:2.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);}
+.hero-stat-num{font-family:var(--font-display);font-size:2rem;color:var(--white);font-weight:700;line-height:1;}
+.hero-stat-label{font-size:.7rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.hero-image-wrap{position:relative;}
+.hero-img-frame{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;position:relative;}
+.hero-img-frame img{width:100%;height:100%;object-fit:cover;}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,46,31,.5) 0%,transparent 60%);}
+.hero-float-card{position:absolute;bottom:2rem;left:-2rem;background:var(--white);border-radius:var(--radius-md);padding:1rem 1.25rem;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:12px;min-width:200px;}
+.hero-float-icon{width:40px;height:40px;background:var(--g100);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hero-float-icon svg{width:20px;height:20px;stroke:var(--g600);fill:none;stroke-width:1.8;}
+.hero-float-num{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--g800);line-height:1;}
+.hero-float-lbl{font-size:.7rem;color:var(--muted);}
+.hero-float-card2{position:absolute;top:2rem;right:-1.5rem;background:var(--gold);border-radius:var(--radius-md);padding:.875rem 1.25rem;box-shadow:0 8px 32px rgba(201,168,76,.4);}
+.hero-float-card2 .num{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--g900);line-height:1;}
+.hero-float-card2 .lbl{font-size:.65rem;color:var(--g900);opacity:.6;text-transform:uppercase;letter-spacing:.06em;}
+
+/* ── ABOUT ───────────────────────────────────────── */
+#about{padding:var(--section-pad);background:var(--cream);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-img-stack{position:relative;padding:0 1rem 2rem 0;}
+.about-img-main{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:3/4;}
+.about-img-main img{width:100%;height:100%;object-fit:cover;}
+.about-img-accent{position:absolute;bottom:0;right:-1rem;width:55%;border-radius:var(--radius-md);overflow:hidden;border:4px solid var(--white);box-shadow:var(--shadow-lg);}
+.about-img-accent img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+.about-badge-years{position:absolute;top:2rem;left:-1.5rem;background:var(--g800);color:var(--white);border-radius:var(--radius-md);padding:1rem 1.25rem;text-align:center;box-shadow:var(--shadow-lg);}
+.about-badge-years .y-num{font-family:var(--font-display);font-size:2.2rem;font-weight:700;color:var(--gold);line-height:1;}
+.about-badge-years .y-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);}
+.about-content{display:flex;flex-direction:column;gap:1.5rem;}
+.about-content .label{color:var(--g500);}
+.about-content .display{font-size:clamp(1.8rem,3.5vw,2.6rem);}
+.about-quote{background:var(--g100);border-left:3px solid var(--g400);padding:1.25rem 1.5rem;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-arabic);font-size:1.2rem;color:var(--g700);direction:rtl;line-height:1.8;}
+.about-quote-trans{font-size:.8rem;color:var(--muted);font-style:italic;direction:ltr;margin-top:.5rem;font-family:var(--font-body);}
+.about-foundation{display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(26,107,69,.07);border:1px solid rgba(26,107,69,.15);border-radius:var(--radius-sm);font-size:.875rem;color:var(--g700);}
+.about-foundation svg{width:16px;height:16px;stroke:var(--g600);fill:none;stroke-width:1.8;flex-shrink:0;}
+
+/* ── ADVANTAGES ──────────────────────────────────── */
+#advantages{padding:var(--section-pad);background:var(--white);}
+.adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3.5rem;}
+.adv-card{background:var(--cream);border-radius:var(--radius-md);padding:2rem 1.75rem;border:1px solid var(--gray200);transition:var(--transition);position:relative;overflow:hidden;}
+.adv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g600),var(--g300));transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.adv-card:hover{border-color:transparent;box-shadow:var(--shadow-md);transform:translateY(-4px);}
+.adv-card:hover::before{transform:scaleX(1);}
+.adv-icon{width:48px;height:48px;background:var(--g100);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;}
+.adv-icon svg{width:22px;height:22px;stroke:var(--g600);fill:none;stroke-width:1.8;}
+.adv-card h3{font-size:1rem;font-weight:600;color:var(--g900);margin-bottom:.5rem;}
+.adv-card p{font-size:.85rem;color:var(--muted);line-height:1.7;}
+.adv-num{font-family:var(--font-display);font-size:3.5rem;font-weight:700;color:var(--g100);position:absolute;bottom:.5rem;right:1rem;line-height:1;}
+
+/* ── PROGRAMS ────────────────────────────────────── */
+#programs{padding:var(--section-pad);background:var(--g900);position:relative;overflow:hidden;}
+#programs .label{color:var(--g300);}
+#programs .display{color:var(--white);}
+#programs .body-lg{color:rgba(255,255,255,.55);}
+.prog-pattern{position:absolute;inset:0;opacity:.03;background-image:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(255,255,255,1) 48px,rgba(255,255,255,1) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,1) 48px,rgba(255,255,255,1) 49px);}
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;position:relative;}
+.prog-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-md);padding:2rem;transition:var(--transition);position:relative;overflow:hidden;}
+.prog-card:hover{background:rgba(255,255,255,.09);border-color:rgba(93,204,144,.25);transform:translateY(-3px);}
+.prog-card.featured{background:var(--g600);border-color:var(--g500);}
+.prog-card.featured:hover{background:var(--g500);}
+.prog-featured-tag{position:absolute;top:1.25rem;right:1.25rem;background:var(--gold);color:var(--g900);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:100px;}
+.prog-icon{width:48px;height:48px;background:rgba(255,255,255,.08);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;}
+.prog-card.featured .prog-icon{background:rgba(255,255,255,.15);}
+.prog-icon svg{width:22px;height:22px;stroke:var(--g300);fill:none;stroke-width:1.8;}
+.prog-card.featured .prog-icon svg{stroke:var(--white);}
+.prog-card h3{font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:.5rem;}
+.prog-card p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.7;}
+.prog-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.25rem;}
+.prog-tag{font-size:.7rem;color:var(--g300);border:1px solid rgba(93,204,144,.3);border-radius:100px;padding:3px 10px;}
+.prog-card.featured .prog-tag{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.25);}
+
+/* ── GALLERY ─────────────────────────────────────── */
+#gallery{padding:var(--section-pad);background:var(--cream);}
+.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:200px 200px;gap:12px;margin-top:3rem;}
+.g-item{border-radius:var(--radius-md);overflow:hidden;}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.g-item:hover img{transform:scale(1.06);}
+.g1{grid-column:1/6;grid-row:1/3;}
+.g2{grid-column:6/9;grid-row:1/2;}
+.g3{grid-column:9/13;grid-row:1/2;}
+.g4{grid-column:6/10;grid-row:2/3;}
+.g5{grid-column:10/13;grid-row:2/3;}
+
+/* ── TESTIMONIALS ────────────────────────────────── */
+#testimonials{padding:var(--section-pad);background:var(--white);}
+.testi-wrapper{position:relative;margin-top:3.5rem;}
+.testi-track{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.testi-card{background:var(--cream);border:1px solid var(--gray200);border-radius:var(--radius-md);padding:2rem;display:flex;flex-direction:column;gap:1rem;transition:var(--transition);}
+.testi-card:hover{box-shadow:var(--shadow-md);border-color:var(--g200);}
+.testi-stars{display:flex;gap:3px;}
+.testi-stars svg{width:14px;height:14px;fill:var(--gold);stroke:none;}
+.testi-quote{font-size:.9rem;color:var(--gray600);line-height:1.75;font-style:italic;}
+.testi-quote::before{content:'\201C';font-family:var(--font-display);font-size:3rem;color:var(--g200);line-height:.5;display:block;margin-bottom:.25rem;}
+.testi-author{display:flex;align-items:center;gap:12px;margin-top:auto;}
+.testi-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--g200);}
+.testi-name{font-size:.875rem;font-weight:600;color:var(--g800);}
+.testi-role{font-size:.75rem;color:var(--muted);}
+
+/* ── CTA BANNER ──────────────────────────────────── */
+#cta-banner{padding:6rem 5%;background:var(--g800);position:relative;overflow:hidden;}
+.cta-geo{position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.5) 0,rgba(255,255,255,.5) 1px,transparent 0,transparent 50%);background-size:24px 24px;}
+.cta-glow-left{position:absolute;left:-10%;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(34,139,87,.3) 0%,transparent 65%);}
+.cta-glow-right{position:absolute;right:-10%;top:50%;transform:translateY(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.15) 0%,transparent 65%);}
+.cta-inner{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2rem;max-width:760px;margin:0 auto;}
+.cta-arabic{font-family:var(--font-arabic);font-size:1.5rem;color:var(--gold);opacity:.8;}
+.cta-inner .display-white{font-size:clamp(2rem,4.5vw,3.4rem);}
+.cta-inner .display-white em{font-style:normal;color:var(--g300);}
+.cta-inner .body-lg{color:rgba(255,255,255,.6);max-width:520px;}
+.cta-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.cta-deadline{display:flex;align-items:center;gap:8px;font-size:.8rem;color:rgba(255,255,255,.45);}
+.cta-deadline svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;}
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer{background:var(--g900);padding:4rem 5% 2rem;color:rgba(255,255,255,.6);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;margin-bottom:3rem;}
+.footer-brand{display:flex;flex-direction:column;gap:1.25rem;}
+.footer-logo{display:flex;align-items:center;gap:12px;}
+.footer-logo-emblem{width:38px;height:38px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.footer-logo-emblem span{font-family:var(--font-arabic);color:var(--gold);font-size:13px;}
+.footer-brand-name{font-family:var(--font-display);color:var(--white);font-size:1.05rem;font-weight:700;}
+.footer-brand-sub{font-size:.65rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;}
+.footer-desc{font-size:.85rem;line-height:1.75;color:rgba(255,255,255,.45);max-width:280px;}
+.footer-social{display:flex;gap:.75rem;}
+.social-link{width:36px;height:36px;border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;transition:var(--transition);}
+.social-link:hover{border-color:var(--g400);background:rgba(34,139,87,.15);}
+.social-link svg{width:16px;height:16px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.8;transition:stroke .2s;}
+.social-link:hover svg{stroke:var(--g300);}
+.footer-col h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--white);font-weight:600;margin-bottom:1.25rem;}
+.footer-col ul{display:flex;flex-direction:column;gap:.75rem;}
+.footer-col ul li a{font-size:.875rem;color:rgba(255,255,255,.45);transition:color .2s;}
+.footer-col ul li a:hover{color:var(--g300);}
+.footer-contact-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:1rem;}
+.footer-contact-item svg{width:16px;height:16px;stroke:var(--g400);fill:none;stroke-width:1.8;flex-shrink:0;margin-top:2px;}
+.footer-contact-item p{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.6;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;flex-wrap:wrap;gap:1rem;}
+.footer-bottom a{color:rgba(255,255,255,.35);transition:color .2s;}
+.footer-bottom a:hover{color:var(--g300);}
+
+/* ── ANIMATIONS ──────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media(max-width:1024px){
+  .adv-grid{grid-template-columns:repeat(2,1fr);}
+  .prog-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .hero-inner{grid-template-columns:1fr;gap:3rem;text-align:center;}
+  .hero-desc{margin:0 auto;}
+  .hero-ctas{justify-content:center;}
+  .hero-stats{justify-content:center;}
+  .hero-image-wrap{display:none;}
+  .about-grid{grid-template-columns:1fr;}
+  .about-img-stack{display:none;}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;}
+  .g-item{grid-column:auto!important;grid-row:auto!important;}
+  .gallery-grid .g-item img{aspect-ratio:4/3;}
+}
+@media(max-width:768px){
+  :root{--section-pad:4rem 5%;}
+  .nav-menu,.nav-actions .btn{display:none;}
+  .hamburger{display:flex;}
+  .adv-grid{grid-template-columns:1fr;}
+  .prog-grid{grid-template-columns:1fr;}
+  .testi-track{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  .gallery-grid{grid-template-columns:1fr;}
+  .hero-inner{padding-top:calc(var(--nav-h) + 2.5rem);}
+}
+@media(max-width:480px){
+  .hero-stats{gap:1.5rem;flex-wrap:wrap;}
+  .cta-actions{flex-direction:column;width:100%;}
+  .cta-actions .btn{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#about" onclick="closeMobile()">Tentang</a>
+  <a href="#advantages" onclick="closeMobile()">Keunggulan</a>
+  <a href="#programs" onclick="closeMobile()">Program</a>
+  <a href="#gallery" onclick="closeMobile()">Galeri</a>
+  <a href="#testimonials" onclick="closeMobile()">Testimoni</a>
+  <a href="#cta-banner" class="btn btn-gold" onclick="closeMobile()">Daftar Sekarang</a>
+</div>
+
+<!-- ── NAVBAR ─── -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="nav-brand">
+      <div class="nav-emblem"><span>ن ع</span></div>
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">MA Nurul Iman</span>
+        <span class="nav-brand-sub">Pondok Pesantren Nurul Iman</span>
+      </div>
+    </a>
+    <div class="nav-menu">
+      <a href="#about">Tentang</a>
+      <a href="#advantages">Keunggulan</a>
+      <a href="#programs">Program</a>
+      <a href="#gallery">Galeri</a>
+      <a href="#testimonials">Testimoni</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#cta-banner" class="btn btn-gold">Daftar Sekarang</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ─── -->
+<section id="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content reveal">
+      <div class="hero-badge"><div class="hero-dot"></div>Madrasah Aliyah Unggulan · Est. 1992</div>
+      <h1 class="hero-title">
+        Mendidik <em>Generasi</em><br/>Berilmu &amp; Berakhlak<br/>Mulia
+      </h1>
+      <p class="hero-desc">MA Nurul Iman hadir sebagai madrasah aliyah berbasis pesantren yang memadukan kurikulum nasional dengan pendidikan Islam mendalam — melahirkan lulusan siap universitas dan siap hidup.</p>
+      <div class="hero-ctas">
+        <a href="#cta-banner" class="btn btn-gold">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          Daftar PPDB 2025
+        </a>
+        <a href="#about" class="btn btn-outline-white">Pelajari Lebih Lanjut</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">1.200+</div>
+          <div class="hero-stat-label">Santri Aktif</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">98%</div>
+          <div class="hero-stat-label">Lulus UN</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">32</div>
+          <div class="hero-stat-label">Tahun Berdiri</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-wrap reveal">
+      <div class="hero-img-frame">
+        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80" alt="Santri MA Nurul Iman"/>
+        <div class="hero-img-overlay"></div>
+      </div>
+      <div class="hero-float-card">
+        <div class="hero-float-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div>
+          <div class="hero-float-num">85%</div>
+          <div class="hero-float-lbl">Masuk PTN Favorit</div>
+        </div>
+      </div>
+      <div class="hero-float-card2">
+        <div class="num">A</div>
+        <div class="lbl">Akreditasi BAN-S/M</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ─── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-stack reveal">
+        <div class="about-img-main">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=700&q=80" alt="Kegiatan belajar mengajar"/>
+        </div>
+        <div class="about-img-accent">
+          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400&q=80" alt="Ekskul santri"/>
+        </div>
+        <div class="about-badge-years">
+          <div class="y-num">32</div>
+          <div class="y-lbl">Tahun<br/>Pengabdian</div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <span class="label">Tentang Kami</span>
+        <h2 class="display">Madrasah yang Membentuk Karakter &amp; Kecerdasan</h2>
+        <div class="about-quote">
+          طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ
+          <div class="about-quote-trans">"Menuntut ilmu adalah kewajiban bagi setiap muslim." — HR. Ibnu Majah</div>
+        </div>
+        <p class="body-lg">MA Nurul Iman berdiri sejak 1992 di bawah naungan Yayasan Pondok Pesantren Nurul Iman. Kami menggabungkan kurikulum Kementerian Agama dengan sistem pendidikan pesantren yang terarah — membentuk santri yang cerdas, mandiri, dan beriman.</p>
+        <div class="about-foundation">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Di bawah naungan <strong>Yayasan Pondok Pesantren Nurul Iman</strong>
+        </div>
+        <a href="#programs" class="btn btn-primary" style="width:fit-content;">Lihat Program Kami →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ADVANTAGES ─── -->
+<section id="advantages">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Mengapa Kami?</span>
+      <h2 class="display">Keunggulan MA Nurul Iman</h2>
+      <p class="body-lg">Empat pilar utama yang membedakan MA Nurul Iman dari madrasah lainnya.</p>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card reveal">
+        <div class="adv-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <h3>Kurikulum Terintegrasi</h3>
+        <p>Memadukan kurikulum nasional Kemenag dengan kajian kitab kuning, fiqih, dan akhlak pesantren secara seimbang.</p>
+        <div class="adv-num">01</div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon"><svg viewBox="0 0 24 24"><path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M3 17l9 5 9-5"/><path d="M3 12l9 5 9-5"/></svg></div>
+        <h3>Tahfidz Al-Qur'an</h3>
+        <p>Program hafalan Al-Qur'an dengan target minimum 5 juz selama 3 tahun, dibimbing oleh hafidz &amp; hafidzah berpengalaman.</p>
+        <div class="adv-num">02</div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Fasilitas Modern</h3>
+        <p>Lab komputer berkoneksi internet, lab bahasa, perpustakaan digital, lapangan olahraga, dan asrama yang nyaman.</p>
+        <div class="adv-num">03</div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Tenaga Pendidik Profesional</h3>
+        <p>Seluruh guru berpendidikan S1/S2 dari PTN terkemuka, berpengalaman, dan berkomitmen dalam mendidik generasi bangsa.</p>
+        <div class="adv-num">04</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROGRAMS ─── -->
+<section id="programs">
+  <div class="prog-pattern"></div>
+  <div class="container" style="position:relative;">
+    <div class="section-header reveal">
+      <span class="label">Program Akademik</span>
+      <h2 class="display" style="color:var(--white);">Jalur Pendidikan Pilihan</h2>
+      <p class="body-lg">Tersedia enam program unggulan yang dirancang untuk mengoptimalkan potensi setiap santri.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-card reveal">
+        <div class="prog-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0h10m-10 0H3m18-7v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7"/></svg></div>
+        <h3>Ilmu Pengetahuan Alam (IPA)</h3>
+        <p>Fisika, kimia, biologi, dan matematika dengan lab sains lengkap. Persiapan masuk Kedokteran, Teknik, dan MIPA.</p>
+        <div class="prog-tags"><span class="prog-tag">Sains</span><span class="prog-tag">SNBP/SNBT</span><span class="prog-tag">Olimpiade</span></div>
+      </div>
+      <div class="prog-card featured reveal">
+        <span class="prog-featured-tag">Unggulan</span>
+        <div class="prog-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <h3>Tahfidz &amp; Ulumul Qur'an</h3>
+        <p>Program intensif hafalan Al-Qur'an 30 juz plus kajian tafsir, ulumul qur'an, dan qira'ah sab'ah.</p>
+        <div class="prog-tags"><span class="prog-tag">Hafalan</span><span class="prog-tag">Tafsir</span><span class="prog-tag">Qira'ah</span></div>
+      </div>
+      <div class="prog-card reveal">
+        <div class="prog-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Ilmu Sosial &amp; Humaniora</h3>
+        <p>Ekonomi, sosiologi, geografi, dan sejarah dengan pendekatan integratif nilai-nilai Islam.</p>
+        <div class="prog-tags"><span class="prog-tag">Sosial</span><span class="prog-tag">Ekonomi</span><span class="prog-tag">Debat</span></div>
+      </div>
+      <div class="prog-card reveal">
+        <div class="prog-icon"><svg viewBox="0 0 24 24"><path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M3 17l9 5 9-5"/><path d="M3 12l9 5 9-5"/></svg></div>
+        <h3>Bahasa Arab &amp; Inggris</h3>
+        <p>Penguasaan dua bahasa internasional — Arab untuk khazanah Islam, Inggris untuk kompetisi global.</p>
+        <div class="prog-tags"><span class="prog-tag">Arab</span><span class="prog-tag">Inggris</span><span class="prog-tag">TOEFL</span></div>
+      </div>
+      <div class="prog-card reveal">
+        <div class="prog-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Teknologi &amp; Informatika</h3>
+        <p>Coding, desain digital, literasi teknologi, dan keterampilan abad 21 yang diperlukan di era modern.</p>
+        <div class="prog-tags"><span class="prog-tag">Coding</span><span class="prog-tag">Desain</span><span class="prog-tag">Digital</span></div>
+      </div>
+      <div class="prog-card reveal">
+        <div class="prog-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>Pengembangan Diri &amp; Kepemimpinan</h3>
+        <p>Pramuka, OSIS, Rohis, serta program leadership yang membentuk karakter santri menjadi pemimpin masa depan.</p>
+        <div class="prog-tags"><span class="prog-tag">Pramuka</span><span class="prog-tag">OSIS</span><span class="prog-tag">Leadership</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ─── -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Galeri</span>
+      <h2 class="display">Suasana Kehidupan Madrasah</h2>
+      <p class="body-lg">Sekilas pandang kehidupan belajar, beribadah, dan berkembang di MA Nurul Iman.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="g-item g1"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=700&q=80" alt="Santri belajar bersama"/></div>
+      <div class="g-item g2"><img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=500&q=80" alt="Kegiatan kelas"/></div>
+      <div class="g-item g3"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=500&q=80" alt="Gedung madrasah"/></div>
+      <div class="g-item g4"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="Perpustakaan"/></div>
+      <div class="g-item g5"><img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400&q=80" alt="Olahraga santri"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ─── -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Testimoni</span>
+      <h2 class="display">Apa Kata Mereka?</h2>
+      <p class="body-lg">Pendapat orang tua dan alumni tentang pengalaman belajar di MA Nurul Iman.</p>
+    </div>
+    <div class="testi-track">
+      <div class="testi-card reveal">
+        <div class="testi-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testi-quote">Anak saya sangat berkembang di sini. Tidak hanya nilai akademiknya meningkat, tapi akhlak dan kemandiriannya juga terbentuk dengan sangat baik. Alhamdulillah pilihan yang tepat.</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://i.pravatar.cc/80?img=47" alt="Ibu Fatimah"/>
+          <div>
+            <div class="testi-name">Hj. Fatimah Rahayu</div>
+            <div class="testi-role">Wali Santri, Angkatan 2022</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testi-quote">Berkat program tahfidz di sini, saya berhasil menghafal 15 juz sebelum lulus. Saya diterima di UIN Jakarta jurusan Tafsir-Hadis dengan beasiswa. Pengalaman yang tidak ternilai harganya.</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://i.pravatar.cc/80?img=12" alt="Ahmad Fauzi"/>
+          <div>
+            <div class="testi-name">Ahmad Fauzi Ramadhan</div>
+            <div class="testi-role">Alumni 2021 · Mahasiswa UIN Jakarta</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testi-quote">Guru-gurunya sangat sabar dan perhatian. Metode belajarnya inovatif — tidak hanya ceramah, tapi diskusi, proyek, dan praktik lapangan. Anak saya jadi sangat semangat belajar!</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://i.pravatar.cc/80?img=32" alt="Bapak Hendra"/>
+          <div>
+            <div class="testi-name">Bapak Hendra Santoso</div>
+            <div class="testi-role">Wali Santri, Angkatan 2023</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ─── -->
+<section id="cta-banner">
+  <div class="cta-geo"></div>
+  <div class="cta-glow-left"></div>
+  <div class="cta-glow-right"></div>
+  <div class="cta-inner reveal">
+    <p class="cta-arabic">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</p>
+    <h2 class="display-white">Daftarkan Putra-Putri Anda di <em>MA Nurul Iman</em></h2>
+    <p class="body-lg">Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2025/2026 kini telah dibuka. Kuota terbatas — segera amankan tempat terbaik untuk buah hati Anda.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Daftar Online Sekarang
+      </a>
+      <a href="#" class="btn btn-outline-white">Unduh Brosur PPDB</a>
+    </div>
+    <div class="cta-deadline">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Pendaftaran ditutup 30 Juni 2025 · Slot tersisa terbatas
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-emblem"><span>ن ع</span></div>
+          <div>
+            <div class="footer-brand-name">MA Nurul Iman</div>
+            <div class="footer-brand-sub">PP. Nurul Iman</div>
+          </div>
+        </div>
+        <p class="footer-desc">Madrasah Aliyah berbasis pesantren yang memadukan ilmu agama dan ilmu umum untuk melahirkan generasi berilmu, berakhlak, dan berprestasi.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul>
+          <li><a href="#about">Tentang Kami</a></li>
+          <li><a href="#advantages">Keunggulan</a></li>
+          <li><a href="#programs">Program Akademik</a></li>
+          <li><a href="#gallery">Galeri</a></li>
+          <li><a href="#testimonials">Testimoni</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informasi</h4>
+        <ul>
+          <li><a href="#">PPDB 2025/2026</a></li>
+          <li><a href="#">Beasiswa Tahfidz</a></li>
+          <li><a href="#">Kalender Akademik</a></li>
+          <li><a href="#">Pengumuman</a></li>
+          <li><a href="#">Portal Santri</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p>Jl. Nurul Iman No. 1, Desa Karangasem, Kec. Weleri, Kendal, Jawa Tengah 51355</p>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <p>0812-3456-7890 (WhatsApp)</p>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <p>info@manurul-iman.sch.id</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 MA Nurul Iman — Yayasan Pondok Pesantren Nurul Iman. Hak cipta dilindungi.</p>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#">Kebijakan Privasi</a>
+        <a href="#">Syarat &amp; Ketentuan</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Navbar scroll ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+navbar.classList.toggle('scrolled', window.scrollY > 40);
+
+// ── Mobile menu ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+function closeMobile(){ mobileMenu.classList.remove('open'); }
+
+// ── Scroll reveal ──
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if(e.isIntersecting){
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
